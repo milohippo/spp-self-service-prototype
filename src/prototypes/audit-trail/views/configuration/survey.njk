@@ -1,0 +1,169 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/migrate
+---
+{% from "components/card/_macro.njk" import onsCard %}
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    }
+] %}
+
+{% block main %}
+    <h1>Monthly Business Survey (MBS - 009)</h1>
+    <p>This survey is currently deployed to:</p>
+
+    <div class="ons-grid">
+        <div class="ons-grid__col ons-col-4@m">
+            <div class="ons-card" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                <h2 class="ons-card__title ons-u-fs-m" id="card-uat">UAT</h2>
+                <p id="text-uat" class="ons-card__body ons-u-mb-no"><strong>Release:</strong> v1.4.2<br>Pushed: 28 Oct 2026, 11:20</p>
+            </div>
+        </div>
+        <div class="ons-grid__col ons-col-4@m">
+            <div class="ons-card" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": "card-preprod",
+                            "text": "Preproduction"
+                        },
+                        "body": {
+                            "id": "text-preprod",
+                            "text": "Release: not yet deployed"
+                        }
+                    })
+                }}
+            </div>
+        </div>
+        <div class="ons-grid__col ons-col-4@m">
+            <div class="ons-card" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": "card-production",
+                            "text": "Production"
+                        },
+                        "body": {
+                            "id": "text-production",
+                            "text": "Release: not yet deployed"
+                        }
+                    })
+                }}
+            </div>
+        </div>
+        <div class="ons-grid__col ons-col-4@m">
+            <div class="ons-card" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                <h2 class="ons-card__title ons-u-fs-m" id="card-dev">Development</h2>
+                <p id="text-dev" class="ons-card__body ons-u-mb-no"><strong>Release:</strong> v1.5.0-rc1<br>Pushed: 30 Oct 2026, 09:45</p>
+            </div>
+        </div>
+        <div class="ons-grid__col ons-col-4@m">
+            <div class="ons-card" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": "card-int",
+                            "text": "Integration"
+                        },
+                        "body": {
+                            "id": "text-int",
+                            "text": "Release: not yet deployed"
+                        }
+                    })
+                }}
+            </div>
+        </div>
+    </div>
+    <h2 class="ons-u-mt-l">Manage the survey configuration</h2>
+        <div class="ons-container">
+            <div class="ons-grid">
+                <div class="ons-grid__col ons-col-6@m">
+                    <div class="spp-audit-entry--changed">
+                        {{
+                            onsCard({
+                                "title": {
+                                    "id": 'forms',
+                                    "text": 'Survey forms',
+                                    "url": pageInfo.rootPath + '/views/configuration/forms/formslist.html'
+                                },
+                                "body":{
+                                    "id": 'forms-text',
+                                    "text": 'Add new forms or update the existing ones.'
+                                }
+                            })
+                        }}
+                        <p class="spp-audit-timestamp">Last updated: 30 Oct 2026, 10:15</p>
+                    </div>
+                </div>
+
+                <div class="ons-grid__col ons-col-6@m">
+                    <div class="spp-audit-entry--changed">
+                        {{
+                            onsCard({
+                                "title": {
+                                    "id": 'rules',
+                                    "text": 'Validation rules',
+                                    "url": pageInfo.rootPath + '/views/configuration/rules/rules.html'
+                                },
+                                "body":{
+                                    "id": 'rules-text',
+                                    "text": 'Set up new, or reconfigure existing, validation rules.'
+                                }
+                            })
+                        }}
+                        <p class="spp-audit-timestamp">Last updated: 30 Oct 2026, 10:15</p>
+                    </div>
+                </div>
+
+                <div class="ons-grid__col ons-col-6@m">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": 'reference_data',
+                            "text": 'Reference datasets'
+                        },
+                        "body":{
+                            "id": 'reference_data_text',
+                            "text": 'Adding new reference datasets must be done via Digital Services.'
+                        }
+                    })
+                }}
+                </div>
+
+                <div class="ons-grid__col ons-col-6@m">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": 'derived_questions',
+                            "text": 'Create derived questions and values'
+                        },
+                        "body":{
+                            "id": 'derived_text',
+                            "text": 'Creating new derived questions and values must be done via Digital Services.'
+                        }
+                    })
+                }}
+                </div>
+
+                <div class="ons-grid__col ons-col-6@m">
+                {{
+                    onsCard({
+                        "title": {
+                            "id": 'versions',
+                            "text": 'Manage survey releases and deployments',
+                            "url": pageInfo.rootPath + '/views/configuration/deployment/versions.html'
+                        },
+                        "body":{
+                            "id": 'versions-text',
+                            "text": 'Create a survey release that can be deployed and trigger deployments.'
+                        }
+                    })
+                }}
+                </div>
+            </div>
+        </div>
+{% endblock %}

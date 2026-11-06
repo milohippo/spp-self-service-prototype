@@ -1,0 +1,100 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/configuration/forms/formslist
+---
+{% from "components/card/_macro.njk" import onsCard %}
+
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/survey.html",
+        "text": "NBS (001)"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/forms/formslist.html",
+        "text": "Forms list"
+    }
+] %}
+
+{% block main %}
+    <h1>Manage Form</h1>
+
+    <div class="spp-audit-summary-header">
+        <div></div>
+        <div></div>
+        <div>Last changed</div>
+        <div></div>
+    </div>
+
+    <div class="spp-audit-summary-table">
+        <div class="spp-audit-summary-table__row spp-audit-summary-table__row--changed" id="form-title-row">
+            <div class="spp-audit-summary-table__title">Form title</div>
+            <div class="spp-audit-summary-table__value">
+                <span class="ons-summary__text">Testing (v2)</span>
+                <details class="spp-audit-details" open>
+                    <summary>View changes</summary>
+                    <div class="spp-audit-details__content">
+                        <ul class="spp-audit-diff-list">
+                            <li>Form title: <span class="spp-diff-removed">&minus; Testing</span> <span class="spp-diff-added">+ Testing (v2)</span></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <div class="spp-audit-summary-table__changed">30 Oct 2026, 10:15 by J. Smith</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/forms/uploadjson.html?edit=0" class="ons-summary__button">Change</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="form-id-row">
+            <div class="spp-audit-summary-table__title">Form ID</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">0102</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action"></div>
+        </div>
+
+        <div class="spp-audit-summary-table__row spp-audit-summary-table__row--changed" id="uploaded-file-row">
+            <div class="spp-audit-summary-table__title">Uploaded file</div>
+            <div class="spp-audit-summary-table__value">
+                <span class="ons-summary__text">1_0102.json</span>
+                <details class="spp-audit-details" open>
+                    <summary>View changes</summary>
+                    <div class="spp-audit-details__content">
+                        <ul class="spp-audit-diff-list">
+                            <li>File name: <span class="spp-diff-removed">&minus; 1_0101.json</span> <span class="spp-diff-added">+ 1_0102.json</span></li>
+                            <li>Questions updated: <span class="spp-diff-removed">&minus; Q14: Check comment (No)</span> <span class="spp-diff-added">+ Q14: Check comment (Yes)</span></li>
+                            <li>Questions added: <span class="spp-diff-added">+ Q18: Total capital expenditure</span></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <div class="spp-audit-summary-table__changed">30 Oct 2026, 10:15 by J. Smith</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/forms/uploadjson.html?edit=0" class="ons-summary__button">Change</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="ons-u-mt-l">Update form</h2>
+    <p>To update the form schema or ID; upload a new json schema file. If any changes are required to the contents of the form itself they should be made in Author and then exported as a new JSON file.</p>
+
+    {{
+        onsCard({
+            "title": {
+                "id": 'deleteForm',
+                "text": 'Delete form',
+                "url": pageInfo.rootPath + '/views/configuration/forms/deleteform.html'
+            },
+            "body":{
+                "id": 'deleteForm-text',
+                "text": "Remove this form from the list of forms available in SPP Self Service only. This does not delete any forms that have been deployed to SPP Core."
+            }
+        })
+    }} 
+
+{% endblock %}

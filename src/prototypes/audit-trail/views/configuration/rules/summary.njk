@@ -1,0 +1,131 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/configuration/rules/configure
+---
+{% from "components/button/_macro.njk" import onsButton %}
+
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/survey.html",
+        "text": "MBS (009)",
+        "id": "breadcrumb-survey"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/rules/rules.html",
+        "text": "Rule summary"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/rules/create.html",
+        "text": "Add a validation rule"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/rules/template.html",
+        "text": "Select template"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/rules/configure.html",
+        "text": "Configure rule"
+    },
+    {
+        "text": "Summary"
+    }
+] %}
+
+{% block main %}
+    <h1>Summary page</h1>
+    <h2 class="ons-u-mb-m">Validation rules</h2>
+
+    <div class="spp-audit-summary-header">
+        <div></div>
+        <div></div>
+        <div>Last changed</div>
+        <div></div>
+    </div>
+
+    <div class="spp-audit-summary-table">
+        <div class="spp-audit-summary-table__row" id="summary-question-row">
+            <div class="spp-audit-summary-table__title">Question</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">Q11, Q12</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/create.html" data-summary-edit-question="true">Edit</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="summary-form-row">
+            <div class="spp-audit-summary-table__title">Form ID</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">Form 1 (009)</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/create.html" data-summary-edit-question="true">Edit</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="summary-template-row">
+            <div class="spp-audit-summary-table__title">Validation rule</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">VDLPGTX</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/template.html">Edit</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row spp-audit-summary-table__row--changed" id="summary-formula-row">
+            <div class="spp-audit-summary-table__title">Parameters &amp; Formula</div>
+            <div class="spp-audit-summary-table__value">
+                <p style="font-weight: 400;">Entered parameter summary and formula:</p>
+                <p>Current Formula: abs(adjustedresponse(Q11, 0) - response(Q11, 1)) &gt; 50 and response(Q11, 0) &lt; (response(Q11, 1) * 0.007)</p>
+                <details class="spp-audit-details" open>
+                    <summary>View changes</summary>
+                    <div class="spp-audit-details__content">
+                        <p class="ons-u-mb-xs" style="font-weight: 400;">Parameter changes:</p>
+                        <ul class="spp-audit-diff-list">
+                            <li>Question source: <span class="spp-diff-removed">&minus; Response</span> <span class="spp-diff-added">+ Adjusted response</span></li>
+                            <li>Threshold (Constant): <span class="spp-diff-removed">&minus; 100</span> <span class="spp-diff-added">+ 50</span></li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <div class="spp-audit-summary-table__changed">30 Oct 2026, 10:15 by J. Smith</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/configure.html#configure-rule-form">Edit</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="summary-severity-row">
+            <div class="spp-audit-summary-table__title">Severity level</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">Error</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/configure.html#rule-severity-fieldset">Edit</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="summary-message-row">
+            <div class="spp-audit-summary-table__title">Error message</div>
+            <div class="spp-audit-summary-table__value"><span class="ons-summary__text">Error message (this is bad)</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/rules/configure.html#rule-error-message">Edit</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ons-u-mt-l">
+        {{
+            onsButton({
+                "text": "Save and continue",
+                "type": "button",
+                "id": "summary-save-rule-button",
+                "url": pageInfo.rootPath + "/views/configuration/rules/rules.html",
+                "iconType": ""
+            })
+        }}
+    </div>
+{% endblock %}

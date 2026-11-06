@@ -1,0 +1,81 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/configuration/rules/rules
+---
+{% from "components/button/_macro.njk" import onsButton %}
+{% from "components/table/_macro.njk" import onsTable %}
+{% from "components/pagination/_macro.njk" import onsPagination %}
+
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/survey.html",
+        "text": "MBS (009)",
+        "id": "breadcrumb-survey"
+    }
+] %}
+
+{% block main %}
+    <h1>Rule summary page</h1>
+    <p>View existing rules and add new validation rules</p>
+
+    <p id="rule-summary-empty" class="ons-u-mb-l" hidden>No validation rules have been configured yet.</p>
+
+    {{
+        onsTable({
+            "id": "rule-summary-table",
+            "ths": [
+                { "value": "Rule ID" },
+                { "value": "Template" },
+                { "value": "QCode" },
+                { "value": "Error / Warning" },
+                { "value": "Action" }
+            ],
+            "trs": [
+                {
+                    "tds": [
+                        { "value": '<span class="spp-audit-row-marker">001</span>' },
+                        { "value": "VDLPGTX" },
+                        { "value": "Q11" },
+                        { "value": "Error message (this is bad)" },
+                        { "value": '<a href="' + pageInfo.rootPath + '/views/configuration/rules/summary.html" data-manage-rule-link data-rule-id="001">Manage</a>' }
+                    ]
+                },
+                {
+                    "tds": [
+                        { "value": "002" },
+                        { "value": "VDLPGTX" },
+                        { "value": "Q12" },
+                        { "value": "Error message (this is bad)" },
+                        { "value": '<a href="' + pageInfo.rootPath + '/views/configuration/rules/summary.html" data-manage-rule-link data-rule-id="002">Manage</a>' }
+                    ]
+                }
+            ]
+        })
+    }}
+
+    <div id="rule-summary-pagination" class="ons-u-mt-m ons-u-mb-l" hidden>
+        {{
+            onsPagination({
+                "currentPageNumber": 1,
+                "pages": [
+                    { "url": "#1" }
+                ]
+            })
+        }}
+    </div>
+
+    {{
+        onsButton({
+            "text": "Add rule",
+            "id": "add-new-rule-button",
+            "url": pageInfo.rootPath + "/views/configuration/rules/create.html",
+            "iconType": ""
+        })
+    }}
+{% endblock %}

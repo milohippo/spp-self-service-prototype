@@ -1,0 +1,134 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/configuration/deployment/versionadded
+---
+
+{% from "components/button/_macro.njk" import onsButton %}
+{% from "components/card/_macro.njk" import onsCard %}
+
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/survey.html",
+        "text": "NBS (001)"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/deployment/versions.html",
+        "text": "Releases"
+    }
+] %}
+
+{% block main %}
+    <h1 id="version-details-h1">Release Details</h1>
+
+    <div class="spp-audit-summary-header">
+        <div></div>
+        <div></div>
+        <div>Last changed</div>
+        <div></div>
+    </div>
+
+    <div class="spp-audit-summary-table" id="release-details">
+        <div class="spp-audit-summary-table__row" id="version-number-row">
+            <div class="spp-audit-summary-table__title">Release number</div>
+            <div class="spp-audit-summary-table__value" id="version-number"><span class="ons-summary__text">3.2</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action"></div>
+        </div>
+
+        <div class="spp-audit-summary-table__row spp-audit-summary-table__row--changed" id="version-name-row">
+            <div class="spp-audit-summary-table__title">Release name</div>
+            <div class="spp-audit-summary-table__value" id="version-name">
+                <span class="ons-summary__text">2026 Final</span>
+                <details class="spp-audit-details" open>
+                    <summary>View changes</summary>
+                    <div class="spp-audit-details__content">
+                        <p class="ons-u-mb-no" style="font-weight: 400;">Release name: <span class="spp-diff-removed">&minus; 2026 Draft</span> <span class="spp-diff-added">+ 2026 Final</span></p>
+                    </div>
+                </details>
+            </div>
+            <div class="spp-audit-summary-table__changed">30 Oct 2026, 10:15 by J. Smith</div>
+            <div class="spp-audit-summary-table__action">
+                <a href="{{ pageInfo.rootPath }}/views/configuration/deployment/newversion.html">Change</a>
+            </div>
+        </div>
+
+        <div class="spp-audit-summary-table__row spp-audit-summary-table__row--changed" id="forms-row">
+            <div class="spp-audit-summary-table__title">Forms included</div>
+            <div class="spp-audit-summary-table__value" id="forms">
+                <ul>
+                    <li>General form (123)</li>
+                    <li>Shop form (234)</li>
+                    <li>Petrol station form (345)</li>
+                </ul>
+                <details class="spp-audit-details" open>
+                    <summary>View changes</summary>
+                    <div class="spp-audit-details__content">
+                        <p class="ons-u-mb-xs" style="font-weight: 400;">Forms: <span class="spp-diff-added">+ Petrol station form (345)</span></p>
+                        <p class="ons-u-mb-no" style="font-weight: 400;">Updated: <span class="spp-diff-removed">&minus; Shop form (233)</span> <span class="spp-diff-added">+ Shop form (234)</span></p>
+                    </div>
+                </details>
+            </div>
+            <div class="spp-audit-summary-table__changed">30 Oct 2026, 10:15 by J. Smith</div>
+            <div class="spp-audit-summary-table__action"></div>
+        </div>
+
+        <div class="spp-audit-summary-table__row" id="rules-row">
+            <div class="spp-audit-summary-table__title">Validation rules</div>
+            <div class="spp-audit-summary-table__value" id="rules"><span class="ons-summary__text">rules_export.csv</span></div>
+            <div class="spp-audit-summary-table__changed">15 Oct 2026, 09:00</div>
+            <div class="spp-audit-summary-table__action"></div>
+        </div>
+    </div>
+
+<h2 class="ons-u-mt-l">Deployments</h2>
+<p>You can deploy the survey to the following environments.</p>
+
+    {{
+        onsCard({
+            "title": {
+                "id": 'uat',
+                "text": 'Deploy to UAT',
+                "url": pageInfo.rootPath + '/views/configuration/deployment/uatdeploy.html'
+            },
+            "body":{
+                "id": 'uat-text',
+                "text": 'Deploy this release to the User Acceptance Testing environment of SPP.'
+            }
+        })
+    }}
+
+    {{
+        onsCard({
+            "title": {
+                "id": 'preprod',
+                "text": 'Deploy to Preproduction',
+                "url": pageInfo.rootPath + '/views/configuration/deployment/uatdeploy.html'
+            },
+            "body":{
+                "id": 'preprod-text',
+                "text": 'Deploy this release to the Preproduction testing environment of SPP.'
+            }
+        })
+    }} 
+
+    {{
+        onsCard({
+            "title": {
+                "id": 'prod',
+                "text": 'Deploy to Production',
+                "url": pageInfo.rootPath + '/views/configuration/deployment/uatdeploy.html'
+            },
+            "body":{
+                "id": 'prod-text',
+                "text": 'Deploy this release to the Production environment of SPP.'
+            }
+        })
+    }} 
+
+{% endblock %}

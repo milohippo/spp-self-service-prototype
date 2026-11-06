@@ -1,0 +1,87 @@
+---
+group: Working Version
+title: No task list
+layout: audit-trail/views/_main
+prevPage: views/configuration/survey
+---
+{% from "components/button/_macro.njk" import onsButton %}
+{% from "components/card/_macro.njk" import onsCard %}
+
+{% set breadcrumbs = [
+    {
+        "url": pageInfo.rootPath + "/views/migrate.html",
+        "text": "Survey configuration"
+    },
+    {
+        "url": pageInfo.rootPath + "/views/configuration/survey.html",
+        "text": "NBS (001)"
+    }
+] %}
+
+{% block main %}
+    <h1>New Business Survey (123)</h1>
+
+    <h2>Survey forms</h2>
+    <p>All forms uploaded to SPP so far appear in the list below.</p>
+
+    <div id="spp-forms-accordion-area" class="ons-u-mb-m">
+        <div class="ons-grid">
+            <div class="ons-grid__col ons-col-4@m">
+                <div class="ons-card spp-audit-card--changed" style="border: 1px solid var(--ons-color-borders); border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; background: var(--ons-color-white); height: calc(100% - 1.5rem); box-sizing: border-box;">
+                    <div class="ons-card__body">
+                        <h2 class="ons-card__title ons-u-fs-m" id="card-title-0" style="margin: 0 0 1rem 0;">
+                            <a href="{{ pageInfo.rootPath }}/views/configuration/forms/manageform.html?formIndex=0" class="ons-card__link">Testing</a>
+                        </h2>
+                        <div class="ons-card__content">
+                            <dl class="spp-description-list" style="margin: 0; padding: 0; list-style: none;">
+                                <div class="spp-description-list__item" style="display: flex; align-items: baseline; width: 100%; margin-bottom: 0.5rem;">
+                                    <dt class="spp-description-list__term" style="font-weight: bold; min-width: 140px; flex-shrink: 0; margin-right: 1rem;">File name:</dt>
+                                    <dd class="spp-description-list__value" style="margin: 0;">1_0102.json</dd>
+                                </div>
+                                <div class="spp-description-list__item" style="display: flex; align-items: baseline; width: 100%; margin-bottom: 0.5rem;">
+                                    <dt class="spp-description-list__term" style="font-weight: bold; min-width: 140px; flex-shrink: 0; margin-right: 1rem;">Form ID:</dt>
+                                    <dd class="spp-description-list__value" style="margin: 0;">0102</dd>
+                                </div>
+                            </dl>
+                            <p style="margin: 0.5rem 0 0 0;"><a href="{{ pageInfo.rootPath }}/views/configuration/forms/formpreview.html?formIndex=0&amp;formTitle=Testing">Preview form</a></p>
+                            <p class="spp-audit-timestamp" style="margin-top: 0.75rem;">Last updated: 30 Oct 2026, 10:15</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="spp-section-divider" />
+
+    {{
+        onsCard({
+            "title": {
+                "id": 'addForms',
+                "text": 'Add forms',
+                "url": pageInfo.rootPath + '/views/configuration/forms/uploadjson.html'
+            },
+            "body":{
+                "id": 'addForms-text',
+                "text": 'You can add additional forms as they become available. To replace an existing form with a new version, click on the form above.'
+            }
+        })
+    }}  
+
+    <div class="spp-audit-entry--changed ons-u-mt-m">
+        {{
+            onsCard({
+                "title": {
+                    "id": 'bdodQuestions',
+                    "text": 'Configure BDOD question settings',
+                    "url": pageInfo.rootPath + '/views/configuration/forms/bdodsettings.html'
+                },
+                "body":{
+                    "id": 'bdodQuestions-text',
+                    "text": "Users can apply 'Check comment' to any question that is used as a comment field to ensure that the response is checked by the BDOD team. These questions can also be flagged as 'Read only' to ensure BDOD reviewers are unable to change the response."
+                }
+            })
+        }}
+        <p class="spp-audit-timestamp">Last updated: 29 Oct 2026, 14:32</p>
+    </div>
+{% endblock %}
